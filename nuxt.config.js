@@ -1,4 +1,4 @@
-
+require('dotenv').config()
 export default {
   mode: 'universal',
   /*
@@ -25,6 +25,13 @@ export default {
   css: [
   ],
   /*
+   ** Customize the environment variables
+   */
+  env: {
+    baseUrl: process.env.BASE_URL || 'http://localhost:3000',
+    apiBaseUrl: process.env.API_BASE_URL || 'http://localhost:4000',
+  },
+  /*
   ** Plugins to load before mounting the App
   */
   plugins: [
@@ -40,12 +47,16 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/dotenv',
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: process.env.API_BASE_URL,
+    proxyHeaders: false,
+    credentials: false
   },
   /*
   ** Build configuration
